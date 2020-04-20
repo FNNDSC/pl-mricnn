@@ -37,7 +37,7 @@ Description
 
 ``mricnn.py`` is a ChRIS-based application that...
 
-Agruments
+Arguments
 ---------
 
 .. code::
