@@ -276,9 +276,9 @@ class Mricnn(ChrisApp):
         print('-'*30)
         print('Creating and compiling model...')
         print('-'*30)
-        print("Line 264")
+
         model = self.get_unet()
-        weight_dir = options.outputdir+'/weights'
+        weight_dir =options.outputdir +'/weights'
         if not os.path.exists(weight_dir):
             os.mkdir(weight_dir)
         model_checkpoint = ModelCheckpoint(os.path.join(weight_dir, project_name + '.h5'), monitor='val_loss', save_best_only=True)
