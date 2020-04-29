@@ -29,15 +29,20 @@ Synopsis
         [--version]                                                 \
         [--man]                                                     \
         [--meta]                                                    \
+        [--mode <mode>]                                             \
+        [--epochs <epochs>]                                         \
         <inputDir>
         <outputDir> 
 
 Description
 -----------
 
-``mricnn.py`` is a ChRIS-based application that...
+``mricnn.py`` is a ChRIS-based application that uses a 3D Convolutional Neural Network to train on low contrast brain MRI images and predict a masked/segmented image of the same. I have implemented a 3D dense U-net as a training/inference model.
+For efficient learning, I am using a batch size of 16 for training. The batch overlaps with one another for a continued learning and minimal loss. A good data set size would be around 20-30 subjects with an epoch number of 50. If the dataset is 
+more than 200, a much lower epoch size(>=5 && <=10) is recommended. For efficient functioning of this application, the input and output directory structure is necessary. The input folder MUST have valid train and mask .NPY files. This can be achieved by using a plugin fnndsc/pl-mgz_converter. The output of the mentioned plugin is most suitable for the current plugin to work.
+A typical input directory will have 2 subdirectories called 'train' & 'masks'; alongwith 2 .npy files called imgs_train.npy and imgs_mask_train.npy
 
-Arguments
+Agruments
 ---------
 
 .. code::
@@ -53,6 +58,12 @@ Arguments
 
     [--meta]
     If specified, print plugin meta data.
+    
+    [--mode]
+    Required: 1: Training 2: Prediction/inference
+    
+    [--epochs]
+    Optional: Default epoch number is 5
 
 
 Run
@@ -73,13 +84,13 @@ and run with
 
 .. code:: bash
 
-    mricnn.py --man /tmp /tmp
+    mricnn.py --man --mode <mode> --epochs <no. of epochs> /tmp /tmp
 
 to get inline help. The app should also understand being called with only two positional arguments
 
 .. code:: bash
 
-    mricnn.py /some/input/directory /destination/directory
+    mricnn.py --mode <mode> --epochs <no. of epochs> /some/input/directory /destination/directory
 
 
 Using ``docker run``
@@ -92,7 +103,7 @@ Now, prefix all calls with
 .. code:: bash
 
     docker run --rm -v $(pwd)/out:/outgoing                             \
-            fnndsc/pl-mricnn mricnn.py                        \
+            fnndsc/pl-mricnn mricnn.py  --mode <1 or 2>                      \
 
 Thus, getting inline help is:
 
@@ -102,10 +113,23 @@ Thus, getting inline help is:
     docker run --rm -v $(pwd)/in:/incoming -v $(pwd)/out:/outgoing      \
             fnndsc/pl-mricnn mricnn.py                        \
             --man                                                       \
+            --mode 1                                                    \
+            --epochs 10                                                 \
             /incoming /outgoing
 
 Examples
 --------
+
+.. code:: bash
+
+ mkdir in out && chmod 777 out                                \
+ docker run --rm -v $(pwd)/in:/incoming -v $(pwd)/out:/outgoing      \
+            fnndsc/pl-mricnn mricnn.py                        \
+            --man                                                       \
+            --mode 1                                                    \
+            --epochs 10                                                 \
+            /incoming /outgoing
+
 
 
 
