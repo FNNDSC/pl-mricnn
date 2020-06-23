@@ -362,7 +362,8 @@ class Mricnn(ChrisApp):
         for x in range(0, imgs_mask_test.shape[0]):
             for y in range(0, imgs_mask_test.shape[1]):
                 if (count_visualize > 1) and (count_visualize < 16):
-                    imsave(os.path.join(pred_dir, 'pred_' +str( count_processed )+ '.png'), imgs_mask_test[x][y])
+                    save_img=imgs_mask_test[x][y].astype(np.uint8)
+                    imsave(os.path.join(pred_dir, 'pred_' +str( count_processed )+ '.png'), save_img)
                     count_processed += 1
 
                 count_visualize += 1
