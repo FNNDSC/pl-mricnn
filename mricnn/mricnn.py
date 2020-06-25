@@ -349,14 +349,13 @@ class Mricnn(ChrisApp):
         imgs_mask_test = preprocess_squeeze(imgs_mask_test)
         # imgs_mask_test /= 1.7
         #imgs_mask_test = np.around(imgs_mask_test, decimals=0)
-        info = np.iinfo(imgs_mask_test.dtype) # Get the information of the incoming image type
+        # info = np.iinfo(imgs_mask_test.dtype) # Get the information of the incoming image type
         imgs_mask_test = imgs_mask_test.astype(np.uint16)
-        imgs_mask_test=imgs_mask_test* info.max # convert back to original class/labels
+        # imgs_mask_test=imgs_mask_test* info.max # convert back to original class/labels
         #imgs_mask_test = (imgs_mask_test*255.).astype(np.uint8)
         count_visualize = 1
         count_processed = 0
         pred_dir = 'preds'
-        print ("Line 338")
         if not os.path.exists(pred_dir):
             os.mkdir(pred_dir)
         pred_dir = os.path.join(options.outputdir, project_name)
