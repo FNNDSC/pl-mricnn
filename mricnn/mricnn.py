@@ -267,7 +267,7 @@ class Mricnn(ChrisApp):
 
 
         imgs_train, imgs_mask_train = load_train_data(options)
-        imgs_mask_train = imgs_mask_train.astype(np.unit16)
+        imgs_mask_train = imgs_mask_train.astype(np.uint16)
         imgs_train = imgs_train.astype(np.uint16)
         #imgs_mask_train /= 255.  # scale masks to [0, 1]
         #imgs_train /= 255.  # scale masks to [0, 1]
