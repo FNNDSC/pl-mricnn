@@ -267,10 +267,10 @@ class Mricnn(ChrisApp):
 
 
         imgs_train, imgs_mask_train = load_train_data(options)
-        imgs_mask_train = imgs_mask_train.astype(np.uint16)
-        imgs_train = imgs_train.astype(np.uint16)
-        #imgs_mask_train /= 255.  # scale masks to [0, 1]
-        #imgs_train /= 255.  # scale masks to [0, 1]
+        imgs_mask_train = imgs_mask_train.astype('float32')
+        imgs_train = imgs_train.astype('float32')
+        imgs_mask_train /= 255.  # scale masks to [0, 1]
+        imgs_train /= 255.  # scale masks to [0, 1]
 
 
         print('-'*30)
@@ -314,10 +314,10 @@ class Mricnn(ChrisApp):
         create_test_data(options)
 
         imgs_test = load_test_data(options)
-        #imgs_test = imgs_test.astype('float32')
+        imgs_test = imgs_test.astype('float32')
 
 
-        #imgs_test /= 255.  # scale masks to [0, 1]
+        imgs_test /= 255.  # scale masks to [0, 1]
 
 
         print('-'*30)
@@ -349,10 +349,10 @@ class Mricnn(ChrisApp):
         imgs_mask_test = preprocess_squeeze(imgs_mask_test)
         # imgs_mask_test /= 1.7
         #imgs_mask_test = np.around(imgs_mask_test, decimals=0)
-        info = np.iinfo(np.uint16) # Get the information of the incoming image type
-        imgs_mask_test = imgs_mask_test.astype(np.uint16)
-        imgs_mask_test=imgs_mask_test* info.max # convert back to original class/labels
-        #imgs_mask_test = (imgs_mask_test*255.).astype(np.uint8)
+        #info = np.iinfo(np.uint16) # Get the information of the incoming image type
+        #imgs_mask_test = imgs_mask_test.astype(np.uint16)
+        #imgs_mask_test=imgs_mask_test* info.max # convert back to original class/labels
+        imgs_mask_test = (imgs_mask_test*255.).astype(np.uint8)
         count_visualize = 1
         count_processed = 0
         pred_dir = 'preds'
