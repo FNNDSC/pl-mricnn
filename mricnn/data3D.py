@@ -154,11 +154,11 @@ def create_test_data(options):
         images = sorted(os.listdir(dirr))
         count = total
         for image_name in images:
-            #img = imread(os.path.join(dirr, image_name), as_gray=True)
-            img= imread(dirr+'/'+image_name)
-            info = np.iinfo(img.dtype) # Get the information of the incoming image type
-            img = img.astype(np.uint16) / info.max # normalize the data to 0 - 1
-            img = 255. * img
+            img = imread(os.path.join(dirr, image_name), as_gray=True)
+            #img= imread(dirr+'/'+image_name)
+            #info = np.iinfo(img.dtype) # Get the information of the incoming image type
+            img = img.astype(np.uint16)
+            #img = 255. * img
 
             img = np.array([img])
             if i< 17:
