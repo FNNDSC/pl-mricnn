@@ -37,8 +37,6 @@ sys.path.append(os.path.dirname(__file__))
 
 print ("*************TEST FOR GPUs*****************")
 print(tf.test.gpu_device_name())
-gpu_options = tf.GPUOptions(allow_growth=True)
-session = tf.InteractiveSession(config=tf.ConfigProto(gpu_options=gpu_options))
 
 # import the Chris app superclass
 from chrisapp.base import ChrisApp
