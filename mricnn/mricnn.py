@@ -352,7 +352,7 @@ class Mricnn(ChrisApp):
         #info = np.iinfo(np.uint16) # Get the information of the incoming image type
         #imgs_mask_test = imgs_mask_test.astype(np.uint16)
         #imgs_mask_test=imgs_mask_test* info.max # convert back to original class/labels
-        imgs_mask_test = (imgs_mask_test*255.).astype(np.uint8)
+        imgs_mask_test = (imgs_mask_test*255.).astype(np.uint16)
         count_visualize = 1
         count_processed = 0
         pred_dir = 'preds'
@@ -364,7 +364,7 @@ class Mricnn(ChrisApp):
         for x in range(0, imgs_mask_test.shape[0]):
             for y in range(0, imgs_mask_test.shape[1]):
                 if (count_visualize > 1) and (count_visualize < 16):
-                    save_img=imgs_mask_test[x][y].astype(np.uint8)
+                    save_img=imgs_mask_test[x][y].astype(np.uint16)
                     imsave(os.path.join(pred_dir, 'pred_' +str( count_processed )+ '.png'), save_img)
                     count_processed += 1
 
