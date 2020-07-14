@@ -267,10 +267,10 @@ class Mricnn(ChrisApp):
 
 
         imgs_train, imgs_mask_train = load_train_data(options)
-        imgs_mask_train = imgs_mask_train.astype('float64')
-        imgs_train = imgs_train.astype('float64')
-        imgs_mask_train /= 255.  # scale masks to [0, 1]
-        imgs_train /= 255.  # scale masks to [0, 1]
+        imgs_mask_train = imgs_mask_train.astype('float32')
+        imgs_train = imgs_train.astype('float32')
+        imgs_mask_train *= 255.  # scale masks to [0, 1]
+        imgs_train *= 255.  # scale masks to [0, 1]
 
 
         print('-'*30)
