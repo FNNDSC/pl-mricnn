@@ -293,7 +293,7 @@ class Mricnn(ChrisApp):
         print('-'*30)
 
 
-        model.fit_generator(imgs_train, imgs_mask_train, batch_size=1, epochs=options.epochs, verbose=1, shuffle=True, validation_split=0.10, callbacks=[model_checkpoint, csv_logger])
+        model.fit(imgs_train, imgs_mask_train, batch_size=1, epochs=options.epochs, verbose=1, shuffle=True, validation_split=0.10, callbacks=[model_checkpoint, csv_logger])
 
 
 
