@@ -142,7 +142,7 @@ def create_test_data(options):
     dirs = os.listdir(test_data_path)
     total = int(len(dirs))*18
 
-    imgs = np.ndarray((total, image_depth, image_rows, image_cols), dtype=np.uint16)
+    imgs = np.ndarray((total, image_depth, image_rows, image_cols), dtype=np.uint8)
 
     i = 0
     j = 0
@@ -157,8 +157,8 @@ def create_test_data(options):
             img = imread(os.path.join(dirr, image_name), as_gray=True)
             #img= imread(dirr+'/'+image_name)
             #info = np.iinfo(img.dtype) # Get the information of the incoming image type
-            img = img.astype(np.uint16)
-            #img = 255. * img
+            img = img.astype(np.uint8)
+            #img = img/255.
 
             img = np.array([img])
             if i< 17:
