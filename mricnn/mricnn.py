@@ -35,8 +35,8 @@ import cv2
 import sys
 sys.path.append(os.path.dirname(__file__))
 
-print ("*************TEST FOR GPUs*****************")
-print(tf.test.gpu_device_name())
+#print ("*************TEST FOR GPUs*****************")
+#print(tf.test.gpu_device_name())
 
 # import the Chris app superclass
 from chrisapp.base import ChrisApp
