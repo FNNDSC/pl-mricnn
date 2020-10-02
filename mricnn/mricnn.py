@@ -53,18 +53,18 @@ smooth = 1.
 
 Gstr_title = """
 
-Generate a title from 
-http://patorjk.com/software/taag/#p=display&f=Doom&t=mricnn
+                _                  
+               (_)                 
+ _ __ ___  _ __ _  ___ _ __  _ __  
+| '_ ` _ \| '__| |/ __| '_ \| '_ \ 
+| | | | | | |  | | (__| | | | | | |
+|_| |_| |_|_|  |_|\___|_| |_|_| |_|
 
 """
 
 Gstr_synopsis = """
 
-(Edit this in-line help for app specifics. At a minimum, the 
-flags below are supported -- in the case of DS apps, both
-positional arguments <inputDir> and <outputDir>; for FS apps
-only <outputDir> -- and similarly for <in> <out> directories
-where necessary.)
+
 
     NAME
 
@@ -81,6 +81,8 @@ where necessary.)
             [-v <level>] [--verbosity <level>]                          \\
             [--version]                                                 \\
             <inputDir>                                                  \\
+            [--mode <mode? 1) Training 2) Inference>]                   \\
+            [--epochs <no. of epochs>]                                  \\
             <outputDir> 
 
     BRIEF EXAMPLE
@@ -122,6 +124,10 @@ where necessary.)
         Should be specified,
         If the <mode> is train, model will be trained,
         if the <mide> is infer, model will infer
+        
+        [--epochs <no. of epochs>]
+        Optional. Default value is 5
+        Increase or decrease accordingly
 
 """
 
@@ -139,7 +145,7 @@ class Mricnn(ChrisApp):
     TYPE                    = 'ds'
     DESCRIPTION             = 'An app to train and infer MRI data using a CNN model'
     DOCUMENTATION           = 'http://wiki'
-    VERSION                 = '0.1'
+    VERSION                 = '0.2'
     ICON                    = '' # url of an icon image
     LICENSE                 = 'Opensource (MIT)'
     MAX_NUMBER_OF_WORKERS   = 1  # Override with integer value
